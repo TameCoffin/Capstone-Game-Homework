@@ -1,0 +1,29 @@
+body {
+    background-color: #B9B9B9;
+    text-align: center;
+}
+
+/* .working-title {
+    text-align: center;
+} */
+
+#light {
+    height: 250px;
+    width: 250px;
+    background-color: rgb(158, 121, 121);
+    border: 3px solid black;
+    display: block;
+    margin: auto;
+}
+
+.high-score-message {
+    display: none;
+}
+
+.restart-button {
+    display: none;
+}
+
+.game-over {
+    display: none;
+}

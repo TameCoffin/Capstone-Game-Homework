@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Red Light/Green Light</title>
+</head>
+<body>
+    <header class="header" id="header">
+        <h1 class="working-title">Red Light, Green Light</h1>
+        <h2 class="start-message" style="text-decoration: line-through;">Press "Space" to start!</h2>
+    </header>
+    <main class="main" id="main">
+        <button class="test-button" id="testButton">button test</button>
+        <div class="light"id="light"></div>
+        <h1 class="game-over">Game Over!</h1>
+        <div class="restart-button">Retry</div>
+        <!-- potentially add an option to turn text on or off for those that may have trouble seeing the colors. for now, just have the text at the bottom anyway. -->
+        <h3 class="light-change-alert" style="text-decoration: underline;">Light change alert here</h3>
+        <div class="game-text">
+            <div class="game-score">
+                <h1>Score: <span id="gameScoreTitle"></span></h1>
+            </div>
+            <h2 class="high-score-message">...but on the bright side, you *literally* have the world record for this game! Congrats!</h2>
+            <h2 class="high-score">High-Score:<span id="highScore"></span></h2>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
