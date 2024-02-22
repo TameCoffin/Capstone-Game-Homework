@@ -11,6 +11,7 @@ const restart = document.getElementById('restartButton')
 const highScore = document.getElementById('highScore')
 const hideRules = document.getElementById('hideRules')
 const tutorial = document.getElementById('tutorial')
+const changeShape = document.getElementById('shapeSelect')
 
 let color = "rgb(210, 51, 51)"
 let pointNum = 0
@@ -30,6 +31,34 @@ let newErrorTimer = 75
 let errorSubtract = 1
 let keyState = {};
 let startTime = 3
+
+changeShape.value = "x"
+
+changeShape.addEventListener('change', ()=> {
+    shapeChange()
+    console.log(changeShape.value);
+})
+
+function shapeChange() {
+    if (changeShape.value === "diamond") {
+        light.style.maskImage = "url(/media/diamond_no_t.png)"
+    } else if (changeShape.value === "octagon") {
+        light.style.maskImage = "url(/media/octagon_no_t.png)"
+    } else if (changeShape.value === "circle") {
+        light.style.maskImage = "url(/media/circle.png)"
+    } else if (changeShape.value === "heart") {
+        light.style.maskImage = "url(/media/heart_no_t.png)"
+    } else if (changeShape.value === "star") {
+        light.style.maskImage = "url(/media/star.png)"
+    } else if (changeShape.value === "oval") {
+        light.style.maskImage = "url(/media/oval.png)"
+    } else if (changeShape.value === "triangle") {
+        light.style.maskImage = "url(/media/triangle.png)"
+    } else if (changeShape.value === "pfffghgahfpf") {
+        light.style.maskImage = "url(/media/pfffghgahfpf.png)"
+    } else if (changeShape.value === "square") {
+        light.style.maskImage = ""
+}}
 
 testButton.addEventListener('click', ()=> {
     startingTimer()

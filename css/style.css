@@ -39,24 +39,56 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 200px 30px;
+    margin: 50px 835px;
     padding: auto;
+    background: black;
+    
 }
 
 #light {
-    height: 450px;
-    width: 450px;
+    height: 350px;
+    width: 350px;
     background-color: rgb(158, 121, 121);
     border: 3px solid black;
-    display: block;
     margin: auto;
-    mask-image: url(/media/diamond_no_t.png);
-    mask-size: 75%;
+    mask-image: "";
+    mask-size: 95%;
     mask-repeat: no-repeat;
     mask-position: center;
-    position: absolute;
+    position: static;
     bottom: 40%;
+    display: block;
 }
+
+/* .diamond {
+    height: 350px;
+    width: 350px;
+    background-color: rgb(158, 121, 121);
+    border: 3px solid black;
+    margin: auto;
+    mask-image: url(/media/diamond_no_t.png);
+    mask-size: 100%;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    position: static;
+    bottom: 40%;
+    display: block;
+}
+
+.square {
+    height: 350px;
+    width: 350px;
+    background-color: rgb(158, 121, 121);
+    border: 3px solid black;
+    margin: auto;
+    mask-image: url(/media/square_no_t.png);
+    mask-size: 100%;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    position: static;
+    bottom: 40%;
+    display: none;
+} */
 
 /* #shapeBorders {
     margin: auto;
