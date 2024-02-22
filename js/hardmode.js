@@ -1,18 +1,28 @@
+// Add 100 points each time you listen to Simon. If you hold down space on red and simon didn't tell you to, your points go up, but slower than if it was green
 
-const light = document.getElementById("light")
-const pointsText = document.getElementById('points')
 const countdown = document.getElementById('countdown')
 const overlay = document.getElementById('overlay')
-const testButton = document.getElementById('testButton')
-const lightAlert = document.getElementById('lightAlert')
 const errorTimeTest = document.getElementById('errorTimeTest')
 const gameOverState = document.getElementById('gameOver')
 const restart = document.getElementById('restartButton')
 const highScore = document.getElementById('highScore')
 const hideRules = document.getElementById('hideRules')
 const tutorial = document.getElementById('tutorial')
+const testButton = document.getElementById('testButton')
+const checkStatus = document.getElementById('statusCheck')
+const light = document.getElementById("light")
+const simon = document.getElementById("lightAlert")
+const pointsText = document.getElementById('points')
 
-let color = "rgb(210, 51, 51)"
+
+// rgb(38, 222, 96) is green
+// rgb(210, 51, 51) is red
+
+let lightColor = " "
+let simonSaid = false
+let simonSays = ""
+let says = 0
+let silent = 0
 let pointNum = 0
 let finalScore = 0
 let highscore = 0
@@ -31,6 +41,16 @@ let errorSubtract = 1
 let keyState = {};
 let startTime = 3
 
+
+// testButton.addEventListener('click', ()=> {
+//     lightSwitch()
+//     simonDecider()
+// })
+
+// checkStatus.addEventListener('click', ()=> {
+//     didSimonSay()
+// })
+
 testButton.addEventListener('click', ()=> {
     startingTimer()
 })
@@ -38,6 +58,71 @@ testButton.addEventListener('click', ()=> {
 restart.addEventListener('click', ()=> {
     restartGame()
 })
+
+hideRules.addEventListener('click', ()=> {
+    hideRule()
+})
+
+// function lightSwitch() {
+//     if (light.style.backgroundColor === "rgb(158, 121, 121)") {
+//         lightColor = "rgb(210, 51, 51)"
+//         light.style.backgroundColor = lightColor
+//     } else if (light.style.backgroundColor === "rgb(210, 51, 51)") {
+//         lightColor = "rgb(38, 222, 96)"
+//         light.style.backgroundColor = lightColor
+//     } else {
+//         lightColor = "rgb(210, 51, 51)"
+//         light.style.backgroundColor = lightColor
+//     }
+// }
+
+// Step 1 done
+
+function simonDecider() {
+    x = (Math.floor(Math.random() * 2) == 0);
+    if(x) {
+        simonSays = "Simon says:"
+        simon.innerText = simonSays
+    	console.log("Simon says");
+        simonSaid = true
+    } else {
+        simonSays = ""
+        simon.innerText = simonSays
+        console.log("Simon silent");
+        simonSaid = false
+    }
+}
+
+// function didSimonSay() {
+//     if (simonSaid === false && light.style.backgroundColor === "rgb(210, 51, 51)") {
+//         console.log("Well Done! Light was red and simon didn't speak");
+//         pointNum += 1000
+//         pointsText.innerText = pointNum
+//     } else if (simonSaid === true && light.style.backgroundColor === "rgb(210, 51, 51)") {
+//         console.log("Game Lost: Light was red and simon spoke");
+//         gameOver()
+//     } else if (simonSaid === false && light.style.backgroundColor === "rgb(38, 222, 96)") {
+//         console.log("Game Lost: Light was green and simon didn't speak");
+//         gameOver()
+//     } else if (simonSaid === true && light.style.backgroundColor === "rgb(38, 222, 96)") {
+//         console.log("Well Done! Light was green and simon spoke");
+//         pointNum += 1000
+//         pointsText.innerText = pointNum
+//     }
+// }
+/* 
+    Step 2: 
+
+        Make a function that checks if Simon is active or not.
+*/
+
+// testButton.addEventListener('click', ()=> {
+//     startingTimer()
+// })
+
+// restart.addEventListener('click', ()=> {
+//     restartGame()
+// })
 
 hideRules.addEventListener('click', ()=> {
     hideRule()
@@ -73,14 +158,35 @@ window.addEventListener('keyup',(e) => {
     keyState[e.code] = false;
 },true);
 
+// function keyStateCheck() {
+//     if (keyState["Space"] && color === "rgb(38, 222, 96)" && simonSaid === true){
+//         addPoint()
+//     } else if (keyState["Space"] && color == "rgb(210, 51, 51)" && errorTimer >= 1 && simonSaid === false) {
+//         // dont forget to create an "addPointRed" with a smaller value
+//         pointNum--
+//         pointsText.innerText = pointNum
+//         pointsText.style.color = "rgb(210, 51, 51)"
+//     } else if (keyState["Space"] && color == "rgb(210, 51, 51)" && errorTimer <= 0) {
+//         gameOver()
+//     } else {pointsText.style.color = "rgb(0, 0, 0)"}
+// }
+
 function keyStateCheck() {
-    if (keyState["Space"] && color == "rgb(38, 222, 96)"){
+    if (keyState["Space"] && color === "rgb(38, 222, 96)" && simonSaid === true) {
         addPoint()
-    } else if (keyState["Space"] && color == "rgb(210, 51, 51)" && errorTimer >= 1) {
+    } else if (keyState["Space"] && color === "rgb(38, 222, 96)" && simonSaid === false && errorTimer >= 1) {
         pointNum--
         pointsText.innerText = pointNum
         pointsText.style.color = "rgb(210, 51, 51)"
-    } else if (keyState["Space"] && color == "rgb(210, 51, 51)" && errorTimer <= 0) {
+    } else if (keyState["Space"] && color === "rgb(38, 222, 96)" && simonSaid === false && errorTimer <= 0) {
+        gameOver()
+    } else if (keyState["Space"] && color === "rgb(210, 51, 51)" && simonSaid === false) {
+        addPointRed()
+    } else if (keyState["Space"] && color === "rgb(210, 51, 51)" && simonSaid === true && errorTimer >= 1) {
+        pointNum--
+        pointsText.innerText = pointNum
+        pointsText.style.color = "rgb(210, 51, 51)"
+    } else if (keyState["Space"] && color === "rgb(210, 51, 51)" && simonSaid === true && errorTimer <= 0) {
         gameOver()
     } else {pointsText.style.color = "rgb(0, 0, 0)"}
 }
@@ -103,7 +209,6 @@ function gameLoop() {
 }
 
 gameLoop();
-
 
 function increaseSubtract() {
     subtraction += 0.2
@@ -136,6 +241,8 @@ function errorTime() {
 
 function timeRandomizerRed() {
     if (gameStatus === true) {
+        simonDecider()
+        pointNum += 1000
         errorTime()
         increaseSubtract()
         if (errorTimer <= 20){
@@ -143,17 +250,17 @@ function timeRandomizerRed() {
         }
         redStart = Math.floor(Math.random() * (redMax - redMin + 1) + redMin)
         redStart -= subtraction
-        if (redStart <= 2) {
-            redStart = 2
-            subtraction = 3
+        if (redStart <= 1) {
+            redStart = 1
+            subtraction = 2
             console.log("Floor Reached");
         }
         console.log(redStart);
         console.log("Red Turn");
         color = "rgb(210, 51, 51)"
         light.style.backgroundColor = color
-        lightAlert.style.color = "rgb(210, 51, 51)"
-        lightAlert.innerText = "Red Light!"
+        lightAlert.style.color = "rgb(165, 13, 13)"
+        lightAlert.innerText = simonSays + " Red Light!"
         setTimeout(timeRandomizerGreen, redStart * 1000)
         return redStart
     } else if (gameStatus === false){
@@ -164,6 +271,9 @@ function timeRandomizerRed() {
 
 function timeRandomizerGreen() {
     if (gameStatus === true) {
+        simonDecider()
+        errorTime()
+        pointNum += 1000
         increaseSubtract()
         greenStart = Math.floor(Math.random() * (greenMax - greenMin + 1) + greenMin)
         greenStart -= subtraction
@@ -177,7 +287,7 @@ function timeRandomizerGreen() {
         color = "rgb(38, 222, 96)"
         light.style.backgroundColor = color
         lightAlert.style.color = "rgb(12, 85, 24)"
-        lightAlert.innerText = "Green Light!"
+        lightAlert.innerText = simonSays + " Green Light!"
         setTimeout(timeRandomizerRed, greenStart * 1000)
         return greenStart
     } else if (gameStatus === false){
@@ -193,6 +303,13 @@ function timeRandomizerGreen() {
 function addPoint() {
     if (gameStatus === true) {
         pointNum += 8
+        pointsText.innerText = pointNum
+    }
+}
+
+function addPointRed() {
+    if (gameStatus === true) {
+        pointNum += 1
         pointsText.innerText = pointNum
     }
 }
@@ -254,6 +371,35 @@ function newHighscore() {
     }
 }
 
+
+/*
+    Step 2 done
+
+    Step 3:
+
+        Now make a function that will changed to a pass or fail if you meet the conditions of both the light and simon
+ */
+
+
+/* 
+    Step 3 done
+
+    Step 4: 
+
+        Apply the add 1000 points to the didSimonSay function
+
+        (RAN INTO A SNAG)
+            I gotta create a seperate function that will add 1000 to every possible outcome if you listen to him. Right now I have it so it will add 1000 for each success + click, but now I need to make it so the points will add when you *don't* do anything.
+
+            What might work best is just that when the game over state runs, the points stop adding. Otherwise the points will just normally add each turn.
+
+            Also make sure the points add *specifically* on the light changing after a successful turn
+*/
+
+// Step 5: I think I can start to bring over the code from the normal mode now. Take it slow.
+
+
+
 /*
     2-13-24
 
@@ -277,24 +423,7 @@ function newHighscore() {
 */
 
 /*
-    2-14-24
-
-        Uhhhh hard mode was a lot easier to make than I thought it would be. I already have it done.
-
-        Not sure what to do now.
-
-        I suppose now I'll just make an option to change the shape of the light (by herb's request)
-*/
-
-
-
-/*
-
     Sources:
 
-    "Game Loop" function was taken from "nnnnn" 
-    link: https://jsfiddle.net/nnnnnn/gedk6/
-
-    "Random Number Generator" function was based on code from "danday74" and "Francisc"
-    https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
-*/ 
+        50/50 decider based off of https://stackoverflow.com/questions/32302066/coin-toss-with-javascript-and-html by Amit
+*/

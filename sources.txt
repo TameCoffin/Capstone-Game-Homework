@@ -1,0 +1,15 @@
+
+    Sources:
+
+    "Game Loop" function was taken from "nnnnn" 
+    link: https://jsfiddle.net/nnnnnn/gedk6/
+
+    "Random Number Generator" function was based on code from "danday74" and "Francisc"
+    https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
+
+    "Light Shapes" used are from Chris Coyier's "The Shapes of CSS"
+    https://css-tricks.com/the-shapes-of-css/
+
+    "Simon Decider" based off of https://stackoverflow.com/questions/32302066/coin-toss-with-javascript-and-html by Amit
+
+    Special thanks to everyone in Mississippi Coding Academy for the guided assistance and help on this project :D

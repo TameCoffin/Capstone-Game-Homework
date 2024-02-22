@@ -1,0 +1,38 @@
+first game that came to mind was a sorta simple stealth game. one of those where its just a guy looking in a direction and when he looks
+the other way you do an action. redlight greenlight. 
+
+chicken game. marry rose. put a tac on a chair just before they sit on it. the closer you are to the end of the timeframe, the higher the score.
+ideas to make it more dynamic:
+	
+	- if you approach to early you lose.
+	- you have the ability to slide dash to go faster. it is nessesary to do to be the game. you won't be able to make the timeframe just
+by walking normally.
+	- this makes it so you have to consider the brief timeframe for both placing the tac and also when to slide.
+	- do not. make marry look normal. making someone stand back up after sitting on something has Got to be someone's fetish and I am NOT
+about to be labled as the PIN POKER. Make her a wedding gown with eyes. yea.
+	- different successful endings. like 3 or 4. one of them, marry doesn't get up, but the game still lets you know that u won. text shows up
+saying "marry's weird."
+	- every other ending will just say "MARRY ROSE"
+
+obviously, the most important part is just to get the basic foundation done first. if all you can manage is the most basic game of chicken, do it.
+
+starting out for prototypes, I think a redlight greenlight game is a good idea to try first. I feel like the design will have some crossover with
+this kinda game. 
+
+On RLGL:
+	
+	Basic foundations: I'm going to keep it simple. Don't worry too much on pretells of when the light changes. Make it more of the reaction
+time the player has once the light does turn red again. E.G: when moving when the light is green, the right light will change with no warning
+in 1 frame. you then have a small time window to let go of the button.
+
+as the game goes on, the time frame will slightly shorten.
+ 
+also make sure to make a buffer on when the light is able to change. this will also shorten the longer the game goes on. 
+
+make these variables increase each time a green light ends, not on duration of the game's time.
+
+E.G: very first round has a timeframe between 10-15 seconds red and then 5-12 seconds green. next round will be 9.5-14.5 seconds red and 4.5-11.5 green.
+
+Score goes up when holding down the move button on green. 
+
+if we end up making this our final, get artsy and use Sy as the character doing his job. red means people are passing by, green means he can stretch his limbs a bit. if you don't move at all, your legs lock and you pass out.
